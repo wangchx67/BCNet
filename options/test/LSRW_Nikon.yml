@@ -1,0 +1,39 @@
+### must be same as 
+
+name: Nikon_CCNet
+suffix: ~  # add suffix to saved images
+model: video_base4_m
+distortion: sr
+scale: 1
+crop_border: ~  # crop border when evaluation. If None(~), crop the scale pixels
+gpu_ids: [1]
+
+datasets:
+  test:  # the 1st test dataset
+    name: test
+    mode: video_samesize_lol2
+    dataroot_GT: /data/wcx/LSRW/eval/Nikon/gt
+    dataroot_LQ: /data/wcx/LSRW/eval/Nikon/input
+    cache_data: true
+    N_frames: 5
+    padding: new_info
+
+#### network structures
+network_G:
+  which_model_G: BCNet
+  n_feat: 16
+  chan_factor: 2
+  bias: False
+  color_aug: True
+  color_space: Lab
+train:
+  phase: ~
+  path_l: ~
+#### path
+path:
+  root: ./
+  pretrain_model_G: pre-trained/Nikon.pth
+
+# /home/wangchenxi/projects/Basic_BCNet/experiments/BCNet_magAttn_5k480p_nc16_ps384_chrominance_colorAug/models/147000_G.pth
+# /home/wangchenxi/projects/Basic_BCNet/experiments/BCNet_magAttn_LSRW_Huawei_nc16_ps512_chrominance_colorAug/models/latest_G.pth
+# /home/wangchenxi/projects/Basic_BCNet/experiments/BCNet_magAttn_LSRW_Nikon_nc16_ps512_chrominance_colorAug/models/latest_G.pth

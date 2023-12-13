@@ -1,0 +1,84 @@
+#### general settings
+name: Huawei_lightness
+use_tb_logger: false
+distortion: sr
+scale: 1
+gpu_ids: [1]
+  
+#### datasets
+datasets:
+  train:
+    name: low_light
+    mode: video_samesize_lol2
+    dataroot_GT: /data/wcx/LSRW/train/Huawei/gt
+    dataroot_LQ: /data/wcx/LSRW/train/Huawei/input
+    train_size: [512, 512] # 256|384|512
+    padding: new_info
+
+    use_shuffle: true
+    n_workers: 4  # per GPU
+    batch_size: 8
+    use_flip: true
+    use_rot: true
+
+#    weight_decay_G: 1e-5
+
+    ### -------------Progressive training--------------------------
+    progressive: false # true|false
+    mini_batch_sizes: [8,8,6,6,4,4]             # Batch size per gpu
+    iters: [100000,100000,100000,100000,100000,100000]
+    gt_size: 512   # Max patch size for progressive training
+    gt_sizes: [192,256,320,384,448,512]  # Patch sizes for progressive training.
+    ### ------------------------------------------------------------
+
+  val:
+    ifval: True
+    name: low_light
+    mode: video_samesize_lol2
+    dataroot_GT: /data/wcx/LSRW/eval/Huawei/gt
+    dataroot_LQ: /data/wcx/LSRW/eval/Huawei/input
+    padding: new_info
+
+#### network structures
+network_G:
+  which_model_G: BCNet
+  n_feat: 16
+  chan_factor: 2
+  bias: False
+  color_aug: True
+  color_space: Lab
+
+#### path
+path:
+  root: ./
+  strict_load: false
+
+#### training settings: learning rate scheme, loss
+train:
+  lr_G: !!float 4e-4
+  lr_scheme: MultiStepLR
+  phase: lightness # lightness|chrominance
+  path_lightness: ~
+  beta1: 0.9
+  beta2: 0.99
+  niter: 500000
+  ft_tsa_only: 0
+  warmup_iter: -1  # -1: no warm up
+#  lr_steps: [50000, 100000, 150000, 200000]
+  lr_steps: [5000, 10000, 15000, 20000]
+  lr_gamma: 0.5
+  eta_min: !!float 1e-7
+
+  pixel_criterion: cb # l1|cb|l2
+  pixel_tv: True
+  pixel_vgg: False
+  pixel_ssim: True
+  pixel_weight: 1.0
+  val_freq: !!float 1e3
+
+  manual.resize960x512_seed: 0
+
+#### logger
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 1e3
