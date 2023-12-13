@@ -3,7 +3,7 @@
 
 This is the official implementation of "Brighten-and-Colorize: A Decoupled Network for Customized Low-Light Image Enhancement" (ACM MM 2023)
 
-![pipeline]([https://github.com/wangchx67/FourLLIE/blob/main/figs\pipeline.png](https://github.com/wangchx67/BCNet/blob/main/figs/pipeline.png))
+![pipeline](https://github.com/wangchx67/BCNet/blob/main/figs/pipeline.png)
 
 In this work, we exploit the relationship between image enhancement and image colorization, and achieve colorization-inspired customized image enhancement by a decoupled network. Specifically, it decouples the image enhancement into two sub-tasks, brightening and colorization. The brightening sub-task aims to recover the image with normal contrast, less noise, and finer other lightness details. While the colorization sub-task is based on the process of user-guide image colorization. It takes the chrominance of low-quality images as color guidance and aims to predict the rich chrominance of images. Once the model training is finished, the color guidance (i.e., chrominance of low-quality image) can be coarsely manipulated by users to acquire customized results. 
 
