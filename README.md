@@ -9,7 +9,7 @@ In this work, we exploit the relationship between image enhancement and image co
 
 Note that we have extended this work and adopt performance evaluation in LSRW as shown below instead of LOL, which is very easy to overfitted.
 
-![image-20231213222110349](https://github.com/wangchx67/FourLLIE/blob/main/figs\exp)
+![image-20231213222110349](https://github.com/wangchx67/BCNet/blob/main/figs\exp)
 
 ## Installation
 
@@ -32,7 +32,7 @@ For evaluation, you can modify the dataset path and model path in `./options/tes
 
 For convenient running customization process, we build a very simple UI. You can run the `./ui/main.py`. The simple guideline can be seen following figure.
 
-![image-20231213231337708](https://github.com/wangchx67/FourLLIE/blob/main/figs\ui.png)
+![image-20231213231337708](https://github.com/wangchx67/BCNet/blob/main/figs\ui.png)
 
 ## Citation Information
 
