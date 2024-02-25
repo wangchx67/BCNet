@@ -58,7 +58,7 @@ train:
   lr_G: !!float 4e-4
   lr_scheme: MultiStepLR
   phase: chrominance # lightness|chrominance
-  path_lightness: experiments/Huawei/models/best_G.pth
+  path_lightness: experiments/Huawei_lightness/models/best_G.pth
   beta1: 0.9
   beta2: 0.99
   niter: 500000
